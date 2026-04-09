@@ -10,7 +10,7 @@ const axios = require('axios');
 const Post = require('../models/Post');
 const { CATEGORIES } = require('../models/Post');
 
-const JSONPLACEHOLDER_URL = 'https://jsonplaceholder.typicode.com/posts';
+const JSONPLACEHOLDER_URL = 'https://dummyjson.com/posts?limit=100';
 
 /**
  * Fetches posts from JSONPlaceholder API and stores them in MongoDB.
@@ -21,7 +21,8 @@ const JSONPLACEHOLDER_URL = 'https://jsonplaceholder.typicode.com/posts';
 const fetchAndStorePosts = async () => {
   try {
     console.log('📡 Fetching posts from JSONPlaceholder...');
-    const { data } = await axios.get(JSONPLACEHOLDER_URL);
+    const response = await axios.get(JSONPLACEHOLDER_URL);
+    const data = response.data.posts || response.data;
 
     let inserted = 0;
     let skipped = 0;
