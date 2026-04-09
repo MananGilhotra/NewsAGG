@@ -5,9 +5,11 @@
  */
 
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { HiOutlineEye, HiOutlineClock } from 'react-icons/hi2';
 
 const ArticleCard = ({ post, index = 0 }) => {
+  const navigate = useNavigate();
   const categoryClass = `badge badge-${post.category?.toLowerCase() || 'technology'}`;
 
   // Format date
@@ -61,6 +63,7 @@ const ArticleCard = ({ post, index = 0 }) => {
         e.currentTarget.style.borderColor = 'var(--border-color)';
         e.currentTarget.style.boxShadow = 'none';
       }}
+      onClick={() => navigate(`/article/${post.postId || post._id}`)}
     >
       {/* Hover glow effect */}
       <div style={{

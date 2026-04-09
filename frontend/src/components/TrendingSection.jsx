@@ -6,10 +6,11 @@
 
 import { useRef, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { HiOutlineFire, HiOutlineEye, HiOutlineChevronLeft, HiOutlineChevronRight } from 'react-icons/hi2';
 
 const TrendingSection = ({ posts }) => {
+  const navigate = useNavigate();
   const scrollRef = useRef(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
@@ -170,6 +171,7 @@ const TrendingSection = ({ posts }) => {
                 e.currentTarget.style.borderColor = 'var(--border-color)';
                 e.currentTarget.style.boxShadow = 'none';
               }}
+              onClick={() => navigate(`/article/${post.postId || post._id}`)}
             >
               {/* Rank badge */}
               <div style={{
