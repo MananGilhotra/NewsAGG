@@ -87,7 +87,7 @@ The frontend runs on `http://localhost:5173` and the backend on `http://localhos
 | Variable     | Description                  | Example                                      |
 |-------------|------------------------------|----------------------------------------------|
 | `PORT`       | Server port                  | `5000`                                       |
-| `MONGO_URI`  | MongoDB Atlas connection URI | `mongodb+srv://user:pass@cluster.mongodb.net/newsAggregator` |
+| `MONGO_URI`  | MongoDB Atlas connection URI | `mongodb+srv://manan:Manan%402005@cluster0.qib5asg.mongodb.net/newsAggregator?retryWrites=true&w=majority&appName=Cluster0` |
 | `CLIENT_URL` | Frontend URL (for CORS)      | `http://localhost:5173`                      |
 
 ### Frontend (`frontend/.env`)
