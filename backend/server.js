@@ -76,4 +76,10 @@ const startServer = async () => {
   }
 };
 
-startServer();
+// Only start the server natively if we are not running in Vercel
+if (process.env.NODE_ENV !== 'production' || process.env.RENDER) {
+  startServer();
+}
+
+// THIS IS REQUIRED FOR VERCEL SERVERLESS FUNCTIONS
+module.exports = app;
