@@ -5,6 +5,7 @@ import Footer from './components/Footer';
 import LandingPage from './pages/LandingPage';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import ArticlePage from './pages/ArticlePage';
 
 // Protect private routes if needed in future
 const ProtectedRoute = ({ children }) => {
@@ -29,6 +30,7 @@ function AppRoutes() {
       <Navbar />
       <Routes>
         <Route path="/" element={<LandingPage />} />
+        <Route path="/article/:id" element={<ArticlePage />} />
         <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
         <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
       </Routes>

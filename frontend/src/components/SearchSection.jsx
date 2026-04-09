@@ -7,6 +7,7 @@
 
 import { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { HiOutlineMagnifyingGlass, HiOutlineSignal, HiOutlineFunnel } from 'react-icons/hi2';
 import useSocket from '../hooks/useSocket';
 
@@ -16,6 +17,7 @@ const categories = ['All', 'Technology', 'Business', 'Sports', 'Health', 'Entert
 
 const SearchSection = () => {
   const [query, setQuery] = useState('');
+  const navigate = useNavigate();
   const [category, setCategory] = useState('All');
   const { results, isConnected, isSearching, search } = useSocket();
   const [isFocused, setIsFocused] = useState(false);
@@ -256,6 +258,7 @@ const SearchSection = () => {
                         onMouseLeave={(e) => {
                           e.currentTarget.style.background = 'transparent';
                         }}
+                        onClick={() => navigate(`/article/${post.postId || post._id}`)}
                       >
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.4rem' }}>
                           <span className={`badge badge-${post.category?.toLowerCase()}`} style={{ fontSize: '0.65rem' }}>
