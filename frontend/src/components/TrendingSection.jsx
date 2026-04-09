@@ -6,11 +6,10 @@
 
 import { useRef, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { HiOutlineFire, HiOutlineEye, HiOutlineChevronLeft, HiOutlineChevronRight } from 'react-icons/hi2';
 
 const TrendingSection = ({ posts }) => {
-  const navigate = useNavigate();
   const scrollRef = useRef(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
@@ -143,8 +142,8 @@ const TrendingSection = ({ posts }) => {
           `}</style>
 
           {trendingPosts.map((post, i) => (
+            <Link to={`/article/${post.postId || post._id}`} key={post._id || post.postId} style={{ textDecoration: "none", color: "inherit", display: "block" }}>
             <motion.div
-              key={post._id || post.postId}
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -171,7 +170,7 @@ const TrendingSection = ({ posts }) => {
                 e.currentTarget.style.borderColor = 'var(--border-color)';
                 e.currentTarget.style.boxShadow = 'none';
               }}
-              onClick={() => navigate(`/article/${post.postId || post._id}`)}
+              
             >
               {/* Rank badge */}
               <div style={{
@@ -238,6 +237,7 @@ const TrendingSection = ({ posts }) => {
                 {post.views?.toLocaleString() || 0} views
               </div>
             </motion.div>
+            </Link>
           ))}
         </div>
       </div>

@@ -7,7 +7,7 @@
 
 import { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { HiOutlineMagnifyingGlass, HiOutlineSignal, HiOutlineFunnel } from 'react-icons/hi2';
 import useSocket from '../hooks/useSocket';
 
@@ -17,7 +17,6 @@ const categories = ['All', 'Technology', 'Business', 'Sports', 'Health', 'Entert
 
 const SearchSection = () => {
   const [query, setQuery] = useState('');
-  const navigate = useNavigate();
   const [category, setCategory] = useState('All');
   const { results, isConnected, isSearching, search } = useSocket();
   const [isFocused, setIsFocused] = useState(false);
@@ -241,8 +240,8 @@ const SearchSection = () => {
                       {results.length} result{results.length !== 1 ? 's' : ''} found
                     </div>
                     {results.map((post, i) => (
+                      <Link to={`/article/${post.postId || post._id}`} key={post._id || post.postId} style={{ textDecoration: "none", color: "inherit", display: "block" }}>
                       <motion.div
-                        key={post._id || post.postId}
                         initial={{ opacity: 0, x: -10 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: i * 0.03 }}
@@ -258,7 +257,7 @@ const SearchSection = () => {
                         onMouseLeave={(e) => {
                           e.currentTarget.style.background = 'transparent';
                         }}
-                        onClick={() => navigate(`/article/${post.postId || post._id}`)}
+                        
                       >
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.4rem' }}>
                           <span className={`badge badge-${post.category?.toLowerCase()}`} style={{ fontSize: '0.65rem' }}>
@@ -286,6 +285,7 @@ const SearchSection = () => {
                           {highlightMatch(post.body, query)}
                         </p>
                       </motion.div>
+                      </Link>
                     ))}
                   </>
                 ) : (
